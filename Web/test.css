@@ -23,7 +23,9 @@ body {
 .card {
   background-color: #bdfcc9 !important;
   backdrop-filter: blur(3);
-  border: 3px solid black !important;
+  filter: drop-shadow(5px 3px 10px black);
+  padding: 0.25rem;
+
 }
 .contenedor {
   gap: 1rem;
@@ -33,4 +35,7 @@ body {
 .btn {
   background-color: #4f709c !important ;
 
+}
+img {
+  border-radius:0.5rem;
 }
