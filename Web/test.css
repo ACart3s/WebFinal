@@ -1,0 +1,16 @@
+.barra {
+  background-color: #765827 !important;
+  color: white !important;
+}
+body {
+  background-color: #eac696 !important;
+}
+.kru-bordes {
+  border-radius: 10px;
+  color: #a94438;
+  border: 4px solid !important;
+  padding: 2%;
+}
+.palabras {
+  color: black;
+}
