@@ -14,3 +14,23 @@ body {
 .palabras {
   color: black;
 }
+.inicioSesion {
+  background-color: #4f709c !important;
+}
+.registro {
+  background-color: #4f709c !important;
+}
+.card {
+  background-color: #bdfcc9 !important;
+  backdrop-filter: blur(3);
+  border: 3px solid black !important;
+}
+.contenedor {
+  gap: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+.btn {
+  background-color: #4f709c !important ;
+
+}
