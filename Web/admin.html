@@ -13,8 +13,8 @@
 <body>
   <nav class="vertical-navbar">
     <img src="img/chanchito (1).png" alt="no ta :c" width="80%">
-    <a href="#productos" onclick="mostrarProductos()">Productos</a>
-    <a href="#usuarios" onclick="mostrarUsuarios()">Usuarios</a>
+    <a href="#" onclick="mostrarProductos()">Productos</a>
+    <a href="#" onclick="mostrarUsuarios()">Usuarios</a>
     <a href="#pedidos">Pedidos</a>
   </nav>
 
@@ -72,8 +72,8 @@
           <td>$50.000</td>
           <td>4</td>
           <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn">Eliminar</button> 
-            <button type="button" class="btn btn-primary btn-sm edit-btn">Modificar</button> 
+            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button> 
+            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button> 
           </td>
         </tr>
         <tr>
@@ -81,8 +81,8 @@
           <td>$40.000</td>
           <td>1</td>
           <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn">Eliminar</button> 
-            <button type="button" class="btn btn-primary btn-sm edit-btn">Modificar</button> 
+            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button> 
+            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button> 
           </td>
         </tr>
         <tr>
@@ -90,15 +90,15 @@
           <td>$100.000</td>
           <td>1</td>
           <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn">Eliminar</button> 
-            <button type="button" class="btn btn-primary btn-sm edit-btn">Modificar</button> 
+            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button> 
+            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button> 
           </td>
         </tr>
       </tbody>
     </table>
 
     
-    <div class="container mt-5 content usuarios-lista" id="usuarios-lista">
+    <div class="container mt-5 content usuarios-lista" id="usuarios-lista" style="display: none;">
       <h2>Lista de Usuarios</h2>
       <ul>
         <li>Usuario 1</li>
@@ -126,8 +126,8 @@
           <td>${productPrice}</td>
           <td>${productStock}</td>
           <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn">Eliminar</button>
-            <button type="button" class="btn btn-primary btn-sm edit-btn">Modificar</button>
+            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button>
+            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button>
           </td>
         `;
         
@@ -135,37 +135,29 @@
 
         addProductForm.reset();
       });
-
-      var deleteButtons = document.querySelectorAll(".delete-btn");
-      
-      deleteButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var row = this.closest("tr");
-          row.remove();
-        });
-      });
-
-      var editButtons = document.querySelectorAll(".edit-btn");
-      
-      editButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var row = this.closest("tr");
-          var columns = row.querySelectorAll("td");
-
-          var productName = columns[0].innerText;
-          var productPrice = columns[1].innerText;
-          var productStock = columns[2].innerText;
-
-          var newProductName = prompt("Nuevo nombre del producto:", productName);
-          var newProductPrice = prompt("Nuevo precio del producto:", productPrice);
-          var newProductStock = prompt("Nuevo stock del producto:", productStock);
-
-          columns[0].innerText = newProductName;
-          columns[1].innerText = newProductPrice;
-          columns[2].innerText = newProductStock;
-        });
-      });
     });
+
+    function eliminarProducto(button) {
+      var row = button.closest("tr");
+      row.remove();
+    }
+
+    function modificarProducto(button) {
+      var row = button.closest("tr");
+      var columns = row.querySelectorAll("td");
+
+      var productName = columns[0].innerText;
+      var productPrice = columns[1].innerText;
+      var productStock = columns[2].innerText;
+
+      var newProductName = prompt("Nuevo nombre del producto:", productName);
+      var newProductPrice = prompt("Nuevo precio del producto:", productPrice);
+      var newProductStock = prompt("Nuevo stock del producto:", productStock);
+
+      columns[0].innerText = newProductName;
+      columns[1].innerText = newProductPrice;
+      columns[2].innerText = newProductStock;
+    }
 
     function mostrarUsuarios() {
       document.getElementById("admin-contenido").style.display = "none";
