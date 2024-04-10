@@ -1,13 +1,13 @@
 .barra {
-  background-color: #765827 !important;
+  background-color: #b0a695 !important;
   color: white !important;
 }
 body {
-  background-color: #eac696 !important;
+  background-color: #776b5d !important;
 }
 .kru-bordes {
   border-radius: 10px;
-  color: #a94438;
+  color: #b0a695;
   border: 4px solid !important;
   padding: 2%;
 }
@@ -15,17 +15,16 @@ body {
   color: black;
 }
 .inicioSesion {
-  background-color: #4f709c !important;
+  background-color: #776b5d !important;
 }
 .registro {
   background-color: #4f709c !important;
 }
 .card {
-  background-color: #bdfcc9 !important;
+  background-color: #ebe3d5 !important;
   backdrop-filter: blur(3);
   filter: drop-shadow(5px 3px 10px black);
   padding: 0.25rem;
-
 }
 .contenedor {
   gap: 1rem;
@@ -33,9 +32,23 @@ body {
   margin-top: 1rem;
 }
 .btn {
-  background-color: #4f709c !important ;
-
+  background-color: #776b5d !important ;
+  transition : all 0.4s !important;
+  border-color: #b0a695 !important;
+}
+.boton-login:hover {
+  background-color: #0056b3 !important;
+}
+.boton-compra:hover {
+  scale: 0.9 !important;
 }
 img {
-  border-radius:0.5rem;
+  border-radius: 0.5rem;
+}
+.chanchito2 {
+  width: 200px;
+  height: 200px;
+}
+.texto-chanchito {
+  color: white;
 }
