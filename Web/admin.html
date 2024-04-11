@@ -218,10 +218,12 @@
         productList.innerHTML = "";
 
         products.forEach(function(product) {
+          // Formatear el precio con puntos de separación de miles
+          var formattedPrice = product.price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
           var newRow = document.createElement("tr");
           newRow.innerHTML = `
             <td>${product.name}</td>
-            <td>${product.price}</td>
+            <td>${formattedPrice}</td>
             <td>${product.stock}</td>
             <td>
               <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button>
