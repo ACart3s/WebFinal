@@ -66,33 +66,7 @@
         </tr>
       </thead>
       <tbody id="productList">
-        <tr>
-          <td>Chanchito-Antidepresion informatico</td>
-          <td>$50.000</td>
-          <td>4</td>
-          <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button> 
-            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button> 
-          </td>
-        </tr>
-        <tr>
-          <td>Paila de greda pal huevito</td>
-          <td>$40.000</td>
-          <td>1</td>
-          <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button> 
-            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button> 
-          </td>
-        </tr>
-        <tr>
-          <td>Chanchito Autista</td>
-          <td>$100.000</td>
-          <td>1</td>
-          <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button> 
-            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button> 
-          </td>
-        </tr>
+        
       </tbody>
     </table>
   </div>
@@ -111,8 +85,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>Juan Perez</td>
-          <td>juan@ejemplo.com</td>
+          <td>Juan Pérez</td>
+          <td>juan@example.com</td>
           <td>Calle 123, Ciudad</td>
           <td>123456789</td>
           <td>
@@ -121,9 +95,9 @@
           </td>
         </tr>
         <tr>
-          <td>Maria Garcia</td>
-          <td>maria@ejemplo.com</td>
-          <td>Calle 456, Ciudad</td>
+          <td>Maria García</td>
+          <td>maria@example.com</td>
+          <td>Avenida 456, Pueblo</td>
           <td>987654321</td>
           <td>
             <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
@@ -131,9 +105,9 @@
           </td>
         </tr>
         <tr>
-          <td>Luis Rodriguez</td>
-          <td>luis@ejemplo.com</td>
-          <td>Calle 789, Ciudad</td>
+          <td>Luis Rodríguez</td>
+          <td>luis@example.com</td>
+          <td>Plaza 789, Villa</td>
           <td>456123789</td>
           <td>
             <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
@@ -191,6 +165,8 @@
       var addProductForm = document.getElementById("addProductForm");
       var productList = document.getElementById("productList");
 
+      cargarProductos();
+
       addProductForm.addEventListener("submit", function (event) {
         event.preventDefault();
         
@@ -198,25 +174,73 @@
         var productPrice = document.getElementById("productPrice").value;
         var productStock = document.getElementById("productStock").value;
         
-        var newRow = document.createElement("tr");
-        newRow.innerHTML = `
-          <td>${productName}</td>
-          <td>${productPrice}</td>
-          <td>${productStock}</td>
-          <td>
-            <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button>
-            <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button>
-          </td>
-        `;
-        
-        productList.appendChild(newRow);
+        var product = {
+          name: productName,
+          price: productPrice,
+          stock: productStock
+        };
+e
+        var products = JSON.parse(localStorage.getItem("products")) || [];
+
+        products.push(product);
+
+        localStorage.setItem("products", JSON.stringify(products));
+
+        cargarProductos();
 
         addProductForm.reset();
       });
+
+      function cargarProductos() {
+        var products = JSON.parse(localStorage.getItem("products")) || [];
+
+
+        if (products.length === 0) 
+          products.push(
+            { name: "Chanchito-Antidepresion informatico", price: "$50.000", stock: 4 },
+            { name: "Paila de greda pal huevito", price: "$40.000", stock: 1 },
+            { name: "Chanchito Autista", price: "$100.000", stock: 1 }
+          );
+
+          localStorage.setItem("products", JSON.stringify(products));
+        }
+
+
+        productList.innerHTML = "";
+
+
+        products.forEach(function(product) {
+          var newRow = document.createElement("tr");
+          newRow.innerHTML = `
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>${product.stock}</td>
+            <td>
+              <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button>
+              <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button>
+            </td>
+          `;
+          productList.appendChild(newRow);
+        });
+      }
     });
 
     function eliminarProducto(button) {
       var row = button.closest("tr");
+      var productName = row.cells[0].innerText;
+      
+
+      var products = JSON.parse(localStorage.getItem("products")) || [];
+
+
+      products = products.filter(function(product) {
+        return product.name !== productName;
+      });
+
+
+      localStorage.setItem("products", JSON.stringify(products));
+
+
       row.remove();
     }
 
@@ -235,6 +259,21 @@
       columns[0].innerText = newProductName;
       columns[1].innerText = newProductPrice;
       columns[2].innerText = newProductStock;
+
+
+      var products = JSON.parse(localStorage.getItem("products")) || [];
+
+
+      products.forEach(function(product) {
+        if (product.name === productName) {
+          product.name = newProductName;
+          product.price = newProductPrice;
+          product.stock = newProductStock;
+        }
+      });
+
+
+      localStorage.setItem("products", JSON.stringify(products));
     }
 
     function mostrarUsuarios() {
