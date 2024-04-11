@@ -26,3 +26,15 @@
     display: none; 
   }
   
+  .vertical-navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+  .vertical-navbar > * {
+    margin-bottom: 10px; /* Espacio entre los botones */
+  }
+  .bottom-nav {
+    margin-top: auto; /* Mover el botón al final */
+  }
