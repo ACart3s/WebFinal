@@ -93,35 +93,32 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="usuarios">
         <tr>
-          <td>Juan Pérez</td>
-          <td>juan@example.com</td>
+          <td>Juan Perez</td>
+          <td>juan@gmail.com</td>
           <td>Calle 123, Ciudad</td>
           <td>123456789</td>
           <td>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-            <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarUsuario(this)">Eliminar</button>
           </td>
         </tr>
         <tr>
-          <td>Maria García</td>
-          <td>maria@example.com</td>
-          <td>Avenida 456, Pueblo</td>
+          <td>Maria Garcia</td>
+          <td>maria@gmail.com</td>
+          <td>Calle 456, ciudad</td>
           <td>987654321</td>
           <td>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-            <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarUsuario(this)">Eliminar</button>
           </td>
         </tr>
         <tr>
-          <td>Luis Rodríguez</td>
-          <td>luis@example.com</td>
-          <td>Plaza 789, Villa</td>
+          <td>Luis Rodriguez</td>
+          <td>luis@gmail.com</td>
+          <td>Calle 789, Ciudad</td>
           <td>456123789</td>
           <td>
-            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-            <button type="button" class="btn btn-primary btn-sm">Modificar</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarUsuario(this)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -144,7 +141,7 @@
       <tbody>
         <tr>
           <td>12345</td>
-          <td>Juan Pérez</td>
+          <td>Juan Perez</td>
           <td>Chanchito-Antidepresion informatico</td>
           <td>1</td>
           <td>$50.000</td>
@@ -152,7 +149,7 @@
         </tr>
         <tr>
           <td>54321</td>
-          <td>Maria García</td>
+          <td>Maria Garcia</td>
           <td>Paila de greda pal huevito</td>
           <td>2</td>
           <td>$80.000</td>
@@ -160,7 +157,7 @@
         </tr>
         <tr>
           <td>67890</td>
-          <td>Luis Rodríguez</td>
+          <td>Luis Rodriguez</td>
           <td>Chanchito Autista</td>
           <td>1</td>
           <td>$100.000</td>
@@ -218,7 +215,6 @@
         productList.innerHTML = "";
 
         products.forEach(function(product) {
-          // Formatear el precio con puntos de separación de miles
           var formattedPrice = product.price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
           var newRow = document.createElement("tr");
           newRow.innerHTML = `
@@ -227,7 +223,6 @@
             <td>${product.stock}</td>
             <td>
               <button type="button" class="btn-danger btn-danger btn-sm delete-btn" onclick="eliminarProducto(this)">Eliminar</button>
-              <button type="button" class="btn btn-primary btn-sm edit-btn" onclick="modificarProducto(this)">Modificar</button>
             </td>
           `;
           productList.appendChild(newRow);
@@ -250,35 +245,6 @@
       row.remove();
     }
 
-    function modificarProducto(button) {
-      var row = button.closest("tr");
-      var columns = row.querySelectorAll("td");
-
-      var productName = columns[0].innerText;
-      var productPrice = columns[1].innerText;
-      var productStock = columns[2].innerText;
-
-      var newProductName = prompt("Nuevo nombre del producto:", productName);
-      var newProductPrice = prompt("Nuevo precio del producto:", productPrice);
-      var newProductStock = prompt("Nuevo stock del producto:", productStock);
-
-      columns[0].innerText = newProductName;
-      columns[1].innerText = newProductPrice;
-      columns[2].innerText = newProductStock;
-
-      var products = JSON.parse(localStorage.getItem("products")) || [];
-
-      products.forEach(function(product) {
-        if (product.name === productName) {
-          product.name = newProductName;
-          product.price = newProductPrice;
-          product.stock = newProductStock;
-        }
-      });
-
-      localStorage.setItem("products", JSON.stringify(products));
-    }
-
     function mostrarUsuarios() {
       document.getElementById("admin-contenido").style.display = "none";
       document.getElementById("usuarios-lista").style.display = "block";
@@ -295,6 +261,21 @@
       document.getElementById("admin-contenido").style.display = "none";
       document.getElementById("usuarios-lista").style.display = "none";
       document.getElementById("pedidos-lista").style.display = "block";
+    }
+
+    function eliminarUsuario(button) {
+      var row = button.closest("tr");
+      var usuarioNombre = row.cells[0].innerText;
+      
+      var usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+      usuarios = usuarios.filter(function(usuario) {
+        return usuario.nombre !== usuarioNombre;
+      });
+
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+      row.remove();
     }
   </script>
 </body>
