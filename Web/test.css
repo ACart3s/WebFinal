@@ -52,3 +52,24 @@ img {
 .texto-chanchito {
   color: white;
 }
+.contenedor-carrito {
+  border: #ebe3d5;
+  border-color: #776b5d;
+  gap: 1rem;
+  padding: 3rem;
+}
+.tabla-carrito {
+  gap: 10px;
+  border-collapse: separate;
+  border-spacing: 1rem;
+}
+.letras-elementos {
+  font-style: oblique;
+  color: #4f709c;
+}
+.card-resumen {
+  background-color: #ebe3d5;
+  border-color: #b0a695;
+  border-spacing: 5rem !important;
+
+}
