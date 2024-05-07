@@ -1,16 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Función para actualizar el estado del pedido cuando se selecciona un nuevo estado en el menú desplegable
+
     document.querySelectorAll('.dropdown-menu a.dropdown-item').forEach(item => {
         item.addEventListener('click', function() {
-            var newState = this.innerText; // Obtener el nuevo estado seleccionado
-            var row = this.closest('tr'); // Obtener la fila del pedido
+            var newState = this.innerText; 
+            var row = this.closest('tr'); 
             
-            // Actualizar el estado en la tabla
             row.querySelector('.dropdown-toggle').innerText = newState;
-            
-            // Si deseas guardar el cambio en el almacenamiento local, aquí puedes hacerlo
-            // Por ejemplo, podrías guardar el pedidoId y el newState en el almacenamiento local
-            // Aquí puedes realizar otras acciones según sea necesario, como enviar el nuevo estado al servidor
+
         });
     });
   
@@ -161,18 +157,13 @@ document.addEventListener("DOMContentLoaded", function () {
     row.remove();
   }
 document.addEventListener("DOMContentLoaded", function () {
-  // Función para actualizar el estado del pedido cuando se selecciona un nuevo estado en el menú desplegable
   document.querySelectorAll('.dropdown-menu a.dropdown-item').forEach(item => {
       item.addEventListener('click', function() {
-          var newState = this.innerText; // Obtener el nuevo estado seleccionado
-          var row = this.closest('tr'); // Obtener la fila del pedido
+          var newState = this.innerText; 
+          var row = this.closest('tr'); 
           
-          // Actualizar el estado en la tabla
           row.querySelector('.dropdown-toggle').innerText = newState;
           
-          // Si deseas guardar el cambio en el almacenamiento local, aquí puedes hacerlo
-          // Por ejemplo, podrías guardar el pedidoId y el newState en el almacenamiento local
-          // Aquí puedes realizar otras acciones según sea necesario, como enviar el nuevo estado al servidor
       });
   });
 
