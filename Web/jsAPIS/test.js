@@ -18,6 +18,6 @@ direccion.addEventListener("input", function(event) {
   if(direccion.value === ""){
     direccion.setCustomValidity("Chanchito-direcciones por favor!")
   } else {
-    direccion.setC
+    direccion.setCustomValidity("");
   }
 })
