@@ -10,14 +10,16 @@ email.addEventListener("input", function (event) {
   }
 });
 
-const direccion = document.getElementById("chanchito-direccion")
+const direccion = document.getElementById("chanchito-direccion");
 
-direccion.setCustomValidity("Chanchito-direcciones por favor!")
+direccion.setCustomValidity("Chanchito-direcciones por favor!");
 
-direccion.addEventListener("input", function(event) {
-  if(direccion.value === ""){
-    direccion.setCustomValidity("Chanchito-direcciones por favor!")
+direccion.addEventListener("input", function (event) {
+  if (direccion.value === "") {
+    direccion.setCustomValidity("Chanchito-direcciones por favor!");
   } else {
     direccion.setCustomValidity("");
   }
-})
+});
+
+
