@@ -96,7 +96,42 @@
     </div>
 
     <div class="container mt-5 content usuarios-lista" id="usuarios-lista">
-      <h2 class="text-white">Lista de Clientes</h2>
+      <h2 class="text-white">Agregar Nuevo Usuario</h2>
+      <form id="nuevoUsuarioForm">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="nombreNuevoUsuario" class="text-white">Nombre:</label>
+              <input type="text" id="nombreNuevoUsuario" class="form-control" placeholder="Nombre" required>
+              <div class="invalid-feedback">Por favor ingresa un nombre válido.</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="correoNuevoUsuario" class="text-white">Correo Electrónico:</label>
+              <input type="email" id="correoNuevoUsuario" class="form-control" placeholder="Correo Electrónico" required>
+              <div class="invalid-feedback">Por favor ingresa un correo electrónico válido.</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="direccionNuevoUsuario" class="text-white">Dirección:</label>
+              <input type="text" id="direccionNuevoUsuario" class="form-control" placeholder="Dirección" required>
+              <div class="invalid-feedback">Por favor ingresa una dirección válida en el formato 'calle número, ciudad'.</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="telefonoNuevoUsuario" class="text-white">Teléfono:</label>
+              <input type="tel" id="telefonoNuevoUsuario" class="form-control" placeholder="Teléfono" required>
+              <div class="invalid-feedback">Por favor ingresa un número de teléfono válido.</div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success" onclick="agregarUsuario()">Agregar Usuario</button>
+      </form>
+    
+      <h2 class="text-white mt-5">Lista de Clientes</h2>
       <table class="table">
         <thead>
           <tr>
@@ -114,13 +149,7 @@
             <td>Calle 123, Ciudad</td>
             <td>123456789</td>
             <td>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm delete-btn"
-                onclick="eliminarUsuario(this)"
-              >
-                Eliminar
-              </button>
+              <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="eliminarUsuario(this)">Eliminar</button>
             </td>
           </tr>
           <tr>
@@ -129,13 +158,7 @@
             <td>Calle 456, ciudad</td>
             <td>987654321</td>
             <td>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm delete-btn"
-                onclick="eliminarUsuario(this)"
-              >
-                Eliminar
-              </button>
+              <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="eliminarUsuario(this)">Eliminar</button>
             </td>
           </tr>
           <tr>
@@ -144,13 +167,7 @@
             <td>Calle 789, Ciudad</td>
             <td>456123789</td>
             <td>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm delete-btn"
-                onclick="eliminarUsuario(this)"
-              >
-                Eliminar
-              </button>
+              <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="eliminarUsuario(this)">Eliminar</button>
             </td>
           </tr>
         </tbody>

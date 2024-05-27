@@ -313,4 +313,61 @@ function eliminarUsuario(button) {
 
   row.remove();
 }
+function agregarUsuario() {
+  var nombre = document.getElementById("nombreNuevoUsuario").value.trim();
+  var correo = document.getElementById("correoNuevoUsuario").value.trim();
+  var direccion = document.getElementById("direccionNuevoUsuario").value.trim();
+  var telefono = document.getElementById("telefonoNuevoUsuario").value.trim();
+
+  document.getElementById("nombreNuevoUsuario").classList.remove("is-invalid");
+  document.getElementById("correoNuevoUsuario").classList.remove("is-invalid");
+  document.getElementById("direccionNuevoUsuario").classList.remove("is-invalid");
+  document.getElementById("telefonoNuevoUsuario").classList.remove("is-invalid");
+
+  var nombreValido = /^[a-zA-Z\s]*$/.test(nombre); 
+  if (!nombre || !nombreValido) {
+    document.getElementById("nombreNuevoUsuario").classList.add("is-invalid");
+    return;
+  }
+
+  var correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo); 
+  if (!correo || !correoValido) {
+    document.getElementById("correoNuevoUsuario").classList.add("is-invalid");
+    return;
+  }
+
+  var direccionValida = /^[a-zA-Z]+\s\d+\s?,\s?[a-zA-Z]+$/.test(direccion); 
+  if (!direccion || !direccionValida) {
+    document.getElementById("direccionNuevoUsuario").classList.add("is-invalid");
+    return;
+  }
+
+  var telefonoValido = /^\d+$/.test(telefono); 
+  if (!telefono || !telefonoValido) {
+    document.getElementById("telefonoNuevoUsuario").classList.add("is-invalid");
+    return;
+  }
+
+  var tableBody = document.getElementById("usuarios");
+  var newRow = document.createElement("tr");
+  newRow.innerHTML = `
+    <td>${nombre}</td>
+    <td>${correo}</td>
+    <td>${direccion}</td>
+    <td>${telefono}</td>
+    <td>
+      <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="eliminarUsuario(this)">
+        Eliminar
+      </button>
+    </td>
+  `;
   
+  tableBody.appendChild(newRow);
+
+  document.getElementById("nombreNuevoUsuario").value = "";
+  document.getElementById("correoNuevoUsuario").value = "";
+  document.getElementById("direccionNuevoUsuario").value = "";
+  document.getElementById("telefonoNuevoUsuario").value = "";
+
+  alert("Usuario agregado correctamente.");
+}
